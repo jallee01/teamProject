@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+	
+	<mapper namespace="co.kr.sproject.mappers.UserMapper">
+	
+<!-- 		 <resultMap type="UserVO" id="storyProjectMap"> -->
+<!-- 	        <id column="id" property="id" /> -->
+<!-- 	        <result column="passwd" property="passwd" /> -->
+<!-- 	        <result column="conpasswd" property="conpasswd" /> -->
+<!-- 	        <result column="name" property="name" /> -->
+<!-- 	        <result column="email" property="email" /> -->
+<!-- 	        <result column="addr" property="addr" /> -->
+<!-- 	        <result column="gender" property="gender" /> -->
+<!-- 	        <result column="birth" property="birth" javaType="java.sql.Date" /> -->
+<!-- 	    </resultMap> -->
+    
+ 
+<!-- 		<select id="regist" resultMap="storyProjectMap"> -->
+<!-- 	        select id, passwd, conpasswd, name, email, addr, gender, birth -->
+<!-- 	        from regist -->
+<!-- 	        order by id desc -->
+<!--     	</select> -->
+		
+
+   		<insert id="regist">
+		INSERT INTO regist (
+				id,
+				passwd,
+				conpasswd,
+				name,
+				email,
+				zip,
+				addr,
+				detail_addr,
+				gender,
+				birth_year,
+				birth_month,
+				birth_day
+			) VALUES (
+				#{id},
+				#{passwd},
+				#{conpasswd},
+				#{name},
+				#{email},
+				#{zip},
+				#{addr},
+				#{detail_addr},
+				#{gender},
+				#{birth_year},
+				#{birth_month},
+				#{birth_day}
+			)
+		</insert>
+		<select id="login" resultType="map">
+			SELECT id,name
+			FROM regist
+			WHERE id = #{id}
+			AND passwd = #{passwd} 
+		</select>
+
+
+	</mapper>
